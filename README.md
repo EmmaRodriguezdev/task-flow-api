@@ -1,30 +1,30 @@
 Task Flow API
-Task Flow API es una plataforma de gestión de tareas donde los usuarios pueden crear y administrar workflows y workspaces. Además, ofrece la posibilidad de generar tareas a partir de ideas sugeridas por una IA.
+Task Flow API is a task management platform where users can create and manage workflows and workspaces. It also offers the ability to generate tasks based on ideas suggested by AI.
 
-Características
-Workflows: Organiza las tareas en secuencias lógicas para optimizar los procesos.
+Features
+Workflows: Organize tasks into logical sequences to optimize processes.
 
-Workspaces: Crea espacios colaborativos para organizar las tareas por equipo o proyecto.
+Workspaces: Create collaborative spaces to organize tasks by team or project.
 
-Generación de tareas con IA: La inteligencia artificial sugiere tareas basadas en ideas o inputs proporcionados por los usuarios.
+AI-generated tasks: Artificial intelligence suggests tasks based on ideas or inputs provided by users.
 
-Instalación
-1. Clona el repositorio:
+Installation
+1. Clone the repository:
 bash
 Copiar
 Editar
-git clone <url-del-repositorio>
+git clone <repository-url>
 cd task-flow-api
-2. Instala las dependencias:
+2. Install dependencies:
 bash
 Copiar
 Editar
 npm install
 Scripts
-npm run dev: Inicia el servidor en modo desarrollo con recarga automática.
+npm run dev: Starts the server in development mode with automatic reloading.
 
-npm run build: Compila el código TypeScript a JavaScript.
+npm run build: Compiles TypeScript code to JavaScript.
 
-npm run start: Inicia el servidor con los archivos compilados en la carpeta dist.
+npm run start: Starts the server with the compiled files in the dist folder.
 
-npm test: Ejecuta los tests (por ahora no está configurado).
+npm test: Runs tests (currently not set up).
