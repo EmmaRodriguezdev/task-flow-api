@@ -16,7 +16,8 @@ Task Flow API is a task management platform where users can create and manage wo
 - **Install dependencies
 **npm install
 
-##Scripts
+## Scripts
+
 - **npm run dev: Starts the server in development mode with automatic reload.
 - **npm run build: Compiles TypeScript code to JavaScript.
 - **npm run start: Starts the server with compiled files in the dist folder.
