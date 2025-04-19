@@ -2,14 +2,25 @@ import { User } from "./users.model";
 import { UserProfiles } from "./users-profiles.model";
 
 export class UserService {
-    private userProfileModel = UserProfiles;
-    constructor() {}
+  private userProfileModel = UserProfiles;
+  constructor() {}
 
-    async getAll() {
-        return await User.findAll({
-            include: [
-                { model: this.userProfileModel, as: 'profile' }
-            ]
-        });
-    }
+  async getAll() {
+    return await User.findAll({
+      include: [{ model: this.userProfileModel, as: "profile" }],
+    });
+  }
+
+  async getUserByEmail(email: string) {
+    const user = await User.findOne({
+      where: { email },
+      include: { model: UserProfiles, as: "profile", required: true },
+    });
+
+    if (!user) throw new Error("User not found");
+    
+    user.profile.password = '';
+
+    return user;
+  }
 }
