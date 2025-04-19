@@ -32,8 +32,13 @@
     "baseUrl": "./src" /* Specify the base directory to resolve non-relative module names. */,
     // "paths": {},                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
-    // "typeRoots": [],                                  /* Specify multiple folders that act like './node_modules/@types'. */
-    // "types": [],                                      /* Specify type package names to be included without being referenced in a source file. */
+    //"typeRoots": [
+    //  "./node_modules/@types",
+    //  "./config/express/index.d.ts"
+    //] /* Specify multiple folders that act like './node_modules/@types'. */,
+    // "types": [
+    //   "./config/express/index.d.ts"
+    // ] /* Specify type package names to be included without being referenced in a source file. */,
     // "allowUmdGlobalAccess": true,                     /* Allow accessing UMD globals from modules. */
     // "moduleSuffixes": [],                             /* List of file name suffixes to search when resolving a module. */
     // "allowImportingTsExtensions": true,               /* Allow imports to include TypeScript file extensions. Requires '--moduleResolution bundler' and either '--noEmit' or '--emitDeclarationOnly' to be set. */
@@ -110,5 +115,13 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
-  "include": ["src", "migrations", "seeders", "src/config/models"]
+  "include": [
+    "src",
+    "migrations",
+    "seeders",
+    "src/config/models",
+    "config/**/*.ts"
+  ],
+  "exclude": ["node_modules"],
+  "files": ["./src/config/express/index.d.ts"]
 }

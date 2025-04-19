@@ -1,5 +1,6 @@
 import { Model, DataTypes } from "sequelize";
 import sequelize from "../../config/database";
+import { UserProfiles } from "./users-profiles.model";
 
 export class User extends Model {
     public id!: number;
@@ -7,6 +8,7 @@ export class User extends Model {
     public lastName!: string;
     public email!: string;
     public phone!: string;
+    public profile!: UserProfiles;
     public createdAt!: Date;
     public updatedAt!: Date;
 }
