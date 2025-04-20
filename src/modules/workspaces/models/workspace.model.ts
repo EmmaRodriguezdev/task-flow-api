@@ -1,0 +1,49 @@
+import { User } from "../../users/users.model";
+import { DataTypes, Model } from "sequelize";
+import sequelize from "../../../config/database";
+
+export class Workspace extends Model {
+  public id!: number;
+  public ownerId!: number;
+  public name!: string;
+  public createdAt!: Date;
+  public updatedAt!: Date;
+}
+
+Workspace.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false,
+    },
+    ownerId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: User,
+        key: "id",
+      },
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: new Date(),
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+  },
+  {
+    sequelize,
+    modelName: "Workspace",
+    tableName: "workspaces",
+    timestamps: true,
+  }
+);
