@@ -21,4 +21,8 @@ export class WorkspacesService {
       ],
     });
   }
+
+  async findOneById(id: number) {
+    return await this.workspaceModel.findByPk(id);
+  }
 }
