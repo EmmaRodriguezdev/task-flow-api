@@ -11,6 +11,10 @@ export class UserService {
     });
   }
 
+  async userAlreadyExists(email: string) {
+    return await User.findOne({ where: { email } })
+  }
+
   async getUserByEmail(email: string) {
     const user = await User.findOne({
       where: { email },
