@@ -46,6 +46,15 @@ Task.init({
             key: 'id'
         }
     },
+    parentId: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        defaultValue: null,
+        references: {
+            model: Task,
+            key: 'id'
+        }
+    },
     assignedTo: {
         type: DataTypes.INTEGER,
         allowNull: true,
@@ -87,7 +96,6 @@ Task.init({
     hooks: {
         beforeCreate: (task) => {
             task.createdAt = new Date();
-            task.updatedAt = new Date();
         },
         beforeUpdate: (task) => {
             task.updatedAt = new Date();
