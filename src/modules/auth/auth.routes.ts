@@ -2,12 +2,15 @@ import { Router } from "express";
 import { AuthService } from "./auth.service";
 import { UserService } from "../../modules/users/users.service";
 import { authenticateToken } from "../../middlewares/auth.middleware";
+import { AuthController } from "./auth.controller";
+import { ValidationFieldsMiddleware } from "../../middlewares/validation-fields.middleware";
 
 export class AuthRoutes {
   public router: Router;
   constructor(
     private readonly authService: AuthService,
-    private readonly userService: UserService
+    private readonly userService: UserService,
+    private readonly authController: AuthController
   ) {
     this.router = Router();
     this.setupRouter();
@@ -28,10 +31,34 @@ export class AuthRoutes {
         const user = await this.userService.getUserByEmail(email);
         res.json(user);
       } catch (err: any) {
-        res.status(500).json({ message: err.message || "Internal Server Error" });
+        res
+          .status(500)
+          .json({ message: err.message || "Internal Server Error" });
+      }
+    });
+    this.router.post("/create", async (req, res) => {
+      const command = new ValidationFieldsMiddleware(req.body, [
+        "name",
+        "lastName",
+        "email",
+        "phone",
+        "password",
+      ]);
+      try {
+        command.validate();
+        const result = await this.authController.createUser(req.body);
+        res.json(result);
+      } catch (err: any) {
+        res
+          .status(500)
+          .json({ message: err.message || "Internal Server Error" });
       }
     });
   }
 }
 
-export default new AuthRoutes(new AuthService(), new UserService()).router;
+export default new AuthRoutes(
+  new AuthService(),
+  new UserService(),
+  new AuthController()
+).router;

@@ -54,11 +54,13 @@ UserProfiles.init({
     hooks: {
         beforeCreate: async (profile) => {
             profile.password = await bcrypt.hash(profile.password, 10)
+            profile.createdAt = new Date()
         },
         beforeUpdate: async (profile) => {
             if (profile.changed('password')) {
                 profile.password = await bcrypt.hash(profile.password, 10)
             }
+            profile.updatedAt = new Date()
         }
     }
 })
