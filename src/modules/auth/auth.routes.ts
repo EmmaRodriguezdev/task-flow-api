@@ -17,12 +17,13 @@ export class AuthRoutes {
   }
 
   private setupRouter() {
-    this.router.post("/signin", async (req, res) => {
+    this.router.post("/login", async (req, res) => {
       try {
         const result = await this.authService.signin(req.body);
         res.json(result);
       } catch (err: any) {
-        res.status(401).json({ message: err.message || "Invalid Credentials" });
+        console.log(err.message)
+        res.status(401).json({ errorCodeName: 'USER_NOT_FOUND', message: err.message || "Invalid Credentials" });
       }
     });
     this.router.get("/userMe", authenticateToken, async (req, res) => {

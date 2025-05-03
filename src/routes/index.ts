@@ -6,9 +6,9 @@ import tasksRoutes from "../modules/tasks/tasks.routes";
 import openaiRoutes from "../modules/openai/openai.routes";
 
 export function registerRoutes(app: Express) {
-    app.use('/', usersRoutes)
-    app.use('/auth', authRoutes)
-    app.use('/workspaces', workspacesRoutes)
-    app.use('/tasks', tasksRoutes)
-    app.use('/openai', openaiRoutes)
+    app.use('/api', usersRoutes)
+    app.use('/api/auth', authRoutes)
+    app.use('/api/workspaces', workspacesRoutes)
+    app.use('/api/tasks', tasksRoutes)
+    app.use('/api/openai', openaiRoutes)
 }
