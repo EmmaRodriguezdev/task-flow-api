@@ -1,10 +1,10 @@
 import express from 'express';
-import sequelize from './config/database';
 import { registerRoutes } from './routes';
 import './config/models/relations';
+import cors from 'cors'
 
 const app = express();
-
+app.use(cors())
 app.use(express.json());
 
 registerRoutes(app);

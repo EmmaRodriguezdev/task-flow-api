@@ -6,3 +6,8 @@ export interface TasksAttributes {
     workspaceId: number;
     parentId?: number | null;
 }
+
+export interface SuccessMessage {
+    message: string;
+    status: number;
+}

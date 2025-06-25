@@ -1,5 +1,5 @@
 import { DataTypes, Model } from "sequelize";
-import { TaskStatus } from "./enum";
+import { TaskPriority, TaskStatus } from "./enum";
 import sequelize from '../../config/database'
 import { Workspace } from "../../modules/workspaces/models/workspace.model";
 import { User } from "../../modules/users/users.model";
@@ -9,6 +9,7 @@ export class Task extends Model {
     public title!: string;
     public description!: string;
     public status!: TaskStatus;
+    public priority!: TaskPriority;
     public workspaceId!: number;
     public assignedTo!: number;
     public createdBy!: number;
@@ -37,6 +38,12 @@ Task.init({
         allowNull: false,
         values: Object.values(TaskStatus),
         defaultValue: TaskStatus.BACKLOG
+    },
+    priority: {
+        type: DataTypes.ENUM,
+        allowNull: false,
+        values: Object.values(TaskPriority),
+        defaultValue: TaskPriority.MEDIUM
     },
     workspaceId: {
         type: DataTypes.INTEGER,

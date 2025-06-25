@@ -19,13 +19,13 @@ export class AuthService {
     });
 
     if (!findUser) throw new Error("User not found");
-
+    
     const isPasswordValid = await bcrypt.compare(
       password,
       findUser.profile.password
     );
 
-    if (isPasswordValid) throw new Error("Invalid credentials");
+    if (!isPasswordValid) throw new Error("Invalid credentials");
 
     const token = JWT.signin({ id: findUser.id, email: user.email });
 
@@ -39,7 +39,7 @@ export class AuthService {
 
   async createUser(user: UserAttributes) {
     const existsUser = await this.userService.userAlreadyExists(user.email);
-    console.log(existsUser);
+    
     if (existsUser) throw new Error("User already exists");
 
     return await this.userModel.create(
