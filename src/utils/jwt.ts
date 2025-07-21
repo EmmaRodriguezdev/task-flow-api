@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const JWT_SECRET = process.env.JWT_SECRET as string;
+const JWT_SECRET = process.env['JWT_SECRET'] as string;
 
 export class JWT {
     static signin(payload: object): string {

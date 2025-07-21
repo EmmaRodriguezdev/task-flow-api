@@ -1,0 +1,1 @@
+export const COHEREAIAPYKEY = process.env['COHEREAI_API_KEY']
