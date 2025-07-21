@@ -1,16 +1,19 @@
 import { Model, DataTypes } from "sequelize";
-import sequelize from "../../config/database";
+import sequelize from "../../../config/database";
+import { UserProfileModel } from "./users-profiles.model";
 
-export class User extends Model {
+export class UserModel extends Model {
     public id!: number;
     public name!: string;
+    public lastName!: string;
     public email!: string;
-    public password!: string;
+    public phone!: string;
+    public profile!: UserProfileModel;
     public createdAt!: Date;
     public updatedAt!: Date;
 }
 
-User.init({
+UserModel.init({
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -23,6 +26,11 @@ User.init({
     lastName: {
         type: DataTypes.STRING,
         allowNull: false,
+    },
+    email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
     },
     phone: {
         type: DataTypes.STRING,

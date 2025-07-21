@@ -1,0 +1,8 @@
+export enum HttpStatusCodes {
+    OK = 200,
+    BAD_REQUEST = 400,
+    UNAUTHORIZED_ERROR = 401,
+    NOT_FOUND_ERROR = 404,
+    INTERNAL_SERVER_ERROR = 500,
+    CONFLICT_ERROR = 409
+}
