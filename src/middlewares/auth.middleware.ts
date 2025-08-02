@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { JwtPayload } from "jsonwebtoken";
 import { JWT } from "../utils/jwt";
+import { AuthToken } from "@/config/express/auth"; 
 
 export function authenticateToken(
   req: Request,
@@ -8,7 +8,7 @@ export function authenticateToken(
   next: NextFunction
 ): void {
   const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
+  const token = authHeader?.split(' ')[1];
 
   if (!token) {
     res.status(401).json({ message: 'Unauthorized' });
@@ -16,11 +16,16 @@ export function authenticateToken(
   }
 
   try {
-    const decoded = JWT.verify(token);
-    req.user = decoded as string | JwtPayload;
-    next()
-  } catch(err) {
+    const decoded = JWT.verify(token) as AuthToken;
+
+    if (!decoded?.id) {
+      res.status(403).json({ message: 'Invalid token structure' });
+      return;
+    }
+
+    req.user = decoded;
+    next();
+  } catch (err) {
     res.status(403).json({ message: 'Invalid token' });
   }
-
 }

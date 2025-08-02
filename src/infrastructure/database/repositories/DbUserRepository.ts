@@ -16,4 +16,16 @@ export class DbUserRepository extends UserRepository {
     
     return findUser as User;
   }
+  override async findById(id: number): Promise<User> {
+    const findUser = await UserModel.findOne({
+      where: { id },
+      include: {
+        model: UserProfileModel,
+        as: "profile",
+        required: true,
+      },
+    });
+    
+    return findUser as User;
+  }
 }

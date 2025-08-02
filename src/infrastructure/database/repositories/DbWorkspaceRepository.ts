@@ -5,7 +5,7 @@ import { WorkspaceSerializer } from "@/infrastructure/web/serializers/WorkspaceS
 import { UserModel } from "../models/users.model";
 
 export class DbWorkspaceRepository extends WorkspaceRepository {
-  override async getWorkspacesByUser(userId: number): Promise<Workspace[]> {
+  override async getWorkspacesByUser(userId: number): Promise<Workspace[] | null> {
     const workspaces = await WorkspaceModel.findAll({
       include: [
         {
@@ -17,5 +17,10 @@ export class DbWorkspaceRepository extends WorkspaceRepository {
       ],
     });
     return WorkspaceSerializer.toDomainList(workspaces);
+  }
+  override async getWorkspaceById(id: number): Promise<Workspace | null> {
+      const workspace = await WorkspaceModel.findByPk(id)
+
+      return WorkspaceSerializer.toDomain(workspace)
   }
 }

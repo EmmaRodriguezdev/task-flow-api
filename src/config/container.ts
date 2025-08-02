@@ -26,7 +26,8 @@ export class Container {
             this.services.get(ServicesDictionary.USERREPOSITORY) as DbUserRepository
         ))
         this.services.set(ServicesDictionary.TASKCONTROLLER, new TaskController(
-            this.services.get(ServicesDictionary.TASKREPOSITORY) as TaskRepository
+            this.services.get(ServicesDictionary.TASKREPOSITORY) as TaskRepository,
+            this.services.get(ServicesDictionary.WORKSPACEREPOSITORY) as WorkspaceRepository
         ))
         this.services.set(ServicesDictionary.WORKSPACECONTROLLER, new WorkspaceController(
             this.services.get(ServicesDictionary.WORKSPACEREPOSITORY) as WorkspaceRepository
