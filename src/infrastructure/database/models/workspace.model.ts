@@ -1,6 +1,7 @@
 import { UserModel } from "./users.model";
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../../../config/database";
+import { User } from "@/domain/entities/User";
 
 export class WorkspaceModel extends Model {
   public id!: number;
@@ -8,6 +9,7 @@ export class WorkspaceModel extends Model {
   public name!: string;
   public createdAt!: Date;
   public updatedAt!: Date;
+  public users!: User[]
 }
 
 WorkspaceModel.init(

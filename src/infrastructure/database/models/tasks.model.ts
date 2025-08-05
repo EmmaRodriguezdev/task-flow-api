@@ -3,6 +3,7 @@ import { TaskPriority, TaskStatus } from "../../../domain/enums/tasks"
 import sequelize from '../../../config/database'
 import { WorkspaceModel } from "./workspace.model";
 import { UserModel } from "./users.model";
+import { User } from "@/domain/entities/User";
 
 export class TaskModel extends Model {
     public id!: number;
@@ -17,6 +18,8 @@ export class TaskModel extends Model {
     public updatedBy!: number;
     public createdAt!: Date;
     public updatedAt!: Date;
+    public assignee?: User;
+    public creator?: User
 }
 
 TaskModel.init({

@@ -32,7 +32,8 @@
       "@/application/*": ["src/application/*"],
       "@/infrastructure/*": ["src/infrastructure/*"],
       "@/presentation/*": ["src/presentation/*"]
-    }
+    },
+    "typeRoots": ["./src/config", "./node_modules/@types"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.spec.ts"]

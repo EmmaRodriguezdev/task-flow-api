@@ -3,6 +3,7 @@ import { Router } from "express";
 import { TaskController } from "../controllers/TaskController";
 import { ServicesDictionary } from "@/utils/containerServices";
 import { asyncHandler } from "@/utils/asyncHandler";
+import { authenticateToken } from "@/middlewares/auth.middleware";
 
 export class TaskRouter {
   container: Container;
@@ -30,6 +31,14 @@ export class TaskRouter {
     this.router.get(
       "/user/:userId",
       asyncHandler(this.taskController.getTasksByUser.bind(this.taskController))
+    )
+    this.router.put(
+      '/update-status/:id',
+      asyncHandler(this.taskController.updateTaskStatus.bind(this.taskController))
+    )
+    this.router.post(
+      '/create', authenticateToken,
+      asyncHandler(this.taskController.createTask.bind(this.taskController))
     )
   }
 
